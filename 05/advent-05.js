@@ -4,8 +4,10 @@ function solution(data) {
   let highestId = 0
   let lowestId = 1000
   let ids = []
-  let myId = 0
+  let mySeatId = 0
+
   for (const seatCode of data) {
+    // find row
     let rowLow = 0
     let rowHigh = 127
     for (let index = 0; index < 7; index++) {
@@ -15,9 +17,9 @@ function solution(data) {
       } else {
         rowLow = rowLow + halfRow
       }
-      //console.log(`${index}: ${rowLow} - ${rowHigh}`)
     }
 
+    // find column
     let colLow = 0
     let colHigh = 7
     for (let index = 7; index < 10; index++) {
@@ -27,27 +29,25 @@ function solution(data) {
       } else {
         colLow = colLow + halfCol
       }
-      //console.log(`${index}: ${colLow} - ${colHigh}`)
     }
 
+    // calculate id
     const seatId = rowLow * 8 + colLow
     ids.push(seatId)
     highestId = Math.max(seatId, highestId)
     lowestId = Math.min(seatId, lowestId)
   }
 
+  // find my seat
   for (let index = lowestId + 1; index < highestId; index++) {
     if (ids.indexOf(index) === -1) {
-      myId = index
+      mySeatId = index
       break
     }
   }
   //return highestId // *** Part 1
-  return myId // *** Part 2
+  return mySeatId // *** Part 2
 }
 
 const data = fs.readFileSync('advent-05-input.txt', 'utf8').split('\n')
 console.log(solution(data))
-
-// data = ['FBFBBFFRLR']
-// solution(data)

@@ -1,5 +1,4 @@
 const fs = require('fs')
-const { relative } = require('path')
 
 function solution(data) {
   const matrix = []

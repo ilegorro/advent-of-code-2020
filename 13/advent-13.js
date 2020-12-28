@@ -37,7 +37,7 @@ function solution(data) {
           failCombination = true
           break
         } else {
-          gap = i
+          gap = gap * busses[j]
           bussesInRow = j + 1
         }
       }
@@ -47,14 +47,11 @@ function solution(data) {
       result = i
       break
     }
-    // if (i % 100000000 === 0) {
-    //   console.log(i)
-    // }
   }
 
   return result
 }
 
-const data = fs.readFileSync('advent-13-input-tmp.txt', 'utf8').split('\n')
+const data = fs.readFileSync('advent-13-input.txt', 'utf8').split('\n')
 
 console.log(solution(data))
